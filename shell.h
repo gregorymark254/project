@@ -13,5 +13,7 @@
 #include <errno.h>
 #include <linux/limits.h>
 
+char *_strtok(char *str, const char *tok);
+
 
 #endif
