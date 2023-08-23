@@ -69,7 +69,7 @@ int main(int argc, char *argv[], char **env)
 		{
 			exit(0);
 		}
-		/*text[strcspn(text, "\n")] = '\0';*/
+		text[strcspn(text, "\n")] = '\0';
 		forked = fork();
 		if (forked == 0)
 		{
