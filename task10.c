@@ -91,7 +91,7 @@ int tokenize(char *text)
 	int y = 0;
 	char *delim = " ";
 
-	args = malloc(sizeof(char *) * 10);
+	args = malloc(sizeof(char *) * 10000000*100000000);
 	if (args == NULL)
 	{
 		perror("Memory allocation failed\n");
