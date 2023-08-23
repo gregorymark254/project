@@ -29,6 +29,7 @@ int main(void)
                 if (checker == -1)
                 {
                         perror("Line not read\n");
+			continue;
                 }
 		ex = strstr(text, "exit");
 		set = strstr(text, "setenv");
@@ -37,6 +38,7 @@ int main(void)
 		if (chdir != NULL)
 		{
 			cd(text);
+			continue;
 		}
 		if (set != NULL)
 		{
@@ -52,6 +54,7 @@ int main(void)
 		if (text == env)
 		{
 			printenv();
+			continue;
 		}
 		if (ex != NULL)
 		{
