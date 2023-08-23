@@ -95,24 +95,19 @@ int tokenize(char *text)
 	args = malloc(sizeof(char *) * 10);
 	if (args == NULL)
 	{
-		perror("Memory allocation failed\n");
+		perror("./hsh");
 		return (-1);
 	}
-
 	args[0] = strtok(text, delim);
-
 	while (args[y] != NULL)
 	{
 		y++;
-
 		if (y >= 10)
 		{
 			args = realloc(args, (y + 1));
 		}
-
 		args[y] = strtok(NULL, delim);
 	}
-
 	args[y] = NULL;
 	return (0);
 }
