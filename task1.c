@@ -25,7 +25,7 @@ int main(void)
 		}
 		if (checker == -1)
 		{
-			perror(".hsh\n");
+			perror("./shell");
 		}
 		if (checker > 0)
 		{
@@ -54,7 +54,7 @@ int execute(char *text)
 	argv[1] = NULL;
 	if (execve(argv[0], argv, NULL) == -1)
 	{
-		perror("./hsh");
+		perror("./shell");
 	}
 	return (0);
 }
