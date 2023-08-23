@@ -19,7 +19,7 @@ int main(void)
 
         while (0 < 1)
         {
-                printf("#cisfun$ ");
+                printf("$ ");
                 checker = getline(&text, &len, stdin);
                 if (checker == EOF)
                 {
