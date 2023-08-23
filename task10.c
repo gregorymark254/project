@@ -124,7 +124,7 @@ int tokenize(char *text)
  */
 int execute(char **args)
 {
-	if (execve(args[0], args, NULL) == -1)
+	if (execvp(args[0], args) == -1)
 	{
 		perror("./hsh");
 	}
