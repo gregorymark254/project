@@ -29,7 +29,6 @@ int main(int argc, char *argv[], char **env)
 		checker = getline(&text, &len, stdin);
 		if (checker == EOF)
 		{
-			printf("\n");
 			break;
 		}
 		if (checker == -1)
