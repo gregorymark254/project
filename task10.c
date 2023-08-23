@@ -2,21 +2,26 @@
 
 int execute(char **args);
 int tokenize(char *text);
-void printenv(void);
 char **args;
 
 /**
  * main - Entry point of the program
+ * @argc: no of args
+ * @argv: array of commands
+ * @env: environment vars
  * Return: 0 indicating success
  */
-int main(void)
+int main(int argc, char *argv[], char **env)
 {
 	int forked, waiting;
+	int x11 = 0;
 	int checker;
 	char *text = NULL;
 	size_t len = 0;
-	char *ex, *env, *unset, *set, *chdir;
+	char *ex, *envv, *unset, *set, *chdir;
 
+	(void) argc;
+	(void) argv;
 	while (0 < 1)
 	{
 		printf("$ ");
@@ -50,10 +55,14 @@ int main(void)
 			unsett(text);
 			continue;
 		}
-		env = "env";
-		if (text == env)
+		envv = "env";
+		if (text == envv)
 		{
-			printenv();
+			while (env[x11] != NULL)
+			{
+				printf("%s\n", env[x11]);
+				x11++;
+			}
 			continue;
 		}
 		if (ex != NULL)
@@ -70,21 +79,6 @@ int main(void)
 		wait(&waiting);
 	}
 	return (0);
-}
-
-/**
- * printenv - prints env var
- * Return: void
- */
-void printenv(void)
-{
-	extern char **environ;
-	int x;
-
-	for (x = 0; environ[x] != NULL; x++)
-	{
-		printf("%s", environ[x]);
-	}
 }
 
 /**
