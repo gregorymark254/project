@@ -1,5 +1,9 @@
 #include "shell.h"
-
+/**
+ * getline_sh - getline
+ * @text: text
+ * Return: void
+ */
 void getline_sh(char **text)
 {
 	int x = 0;

@@ -1,5 +1,9 @@
 #include "shell.h"
-
+/**
+ * sett - set env var
+ * @text: name
+ * Return: void
+ */
 void sett(char *text)
 {
 	char *buff[3];
@@ -15,7 +19,11 @@ void sett(char *text)
 		perror(".hsh");
 	}
 }
-
+/**
+ * unsett - unset env var
+ * @text : name
+ * Return: void
+ */
 void unsett(char *text)
 {
 	char *buff[2];

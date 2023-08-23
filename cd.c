@@ -1,5 +1,9 @@
 #include "shell.h"
-
+/**
+ * cd - changes directory
+ * @text: path
+ * Return: void
+ */
 void cd(char *text)
 {
 	#define buffsize (sizeof(PATH_MAX))
@@ -18,5 +22,4 @@ void cd(char *text)
 	getcwd(buffer, buffsize);
 	setenv("PWD", buffer, 1);
 	free(buffer);
-
 }
