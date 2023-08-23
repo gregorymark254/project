@@ -15,5 +15,7 @@
 
 extern char **environ;
 
+void create_child(char **command, char *name, char **env, int cicles);
+int change_dir(const char *path);
 
 #endif
