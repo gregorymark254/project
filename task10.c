@@ -13,7 +13,8 @@ char **args;
  */
 int main(int argc, char *argv[], char **env)
 {
-	int forked, waiting;
+	int waiting;
+	pid_t forked;
 	int x11 = 0;
 	int checker;
 	char *text = NULL;
@@ -91,7 +92,7 @@ int tokenize(char *text)
 	int y = 0;
 	char *delim = " ";
 
-	args = malloc(sizeof(char *) * 10000000*100000000);
+	args = malloc(sizeof(char *) * 10);
 	if (args == NULL)
 	{
 		perror("Memory allocation failed\n");
@@ -104,10 +105,9 @@ int tokenize(char *text)
 	{
 		y++;
 
-		if (y == 10)
+		if (y >= 10)
 		{
-			printf("Too many arguments\n");
-			return (-1);
+			args = realloc(args, (y + 1));
 		}
 
 		args[y] = strtok(NULL, delim);
