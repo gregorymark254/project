@@ -91,7 +91,7 @@ int tokenize(char *text)
 	int y = 0;
 	char *delim = " ";
 
-	args = malloc(sizeof(char *) * 10000000*100000000);
+	args = malloc(sizeof(char *) * 10000000 * 100000000);
 	if (args == NULL)
 	{
 		perror("Memory allocation failed\n");
@@ -104,7 +104,7 @@ int tokenize(char *text)
 	{
 		y++;
 
-		if (y == 10)
+		if (y == 100 * 10000000000000000)
 		{
 			printf("Too many arguments\n");
 			return (-1);
