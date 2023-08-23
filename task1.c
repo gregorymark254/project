@@ -1,13 +1,13 @@
 #include "shell.h"
 
 int execute(char *text);
-extern char **environ;
+/*extern char **environ;*/
 
 /**
  * main - Entry point of the program
  * Return: 0 indicating success
  */
-int main()
+int main(void)
 {
 	int forked, waiting;
 	int checker;
@@ -27,7 +27,7 @@ int main()
 		{
 			perror(".hsh\n");
 		}
-		if (checker > 0)	
+		if (checker > 0)
 		{
 			text[checker - 1] = '\0';
 		}
@@ -52,7 +52,7 @@ int execute(char *text)
 
 	argv[0] = text;
 	argv[1] = NULL;
-	if (execve(argv[0], argv, environ) == -1)
+	if (execve(argv[0], argv, NULL) == -1)
 	{
 		perror("./hsh");
 	}
