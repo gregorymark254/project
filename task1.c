@@ -15,7 +15,7 @@ int main()
 	char *text = NULL;
 	size_t len = 0;
 	char *prompt = "#cisfun$ ";
-	char *error = "./hsh";
+	char *error = "./hsh\n";
 
 	while (0 < 1)
 	{
@@ -28,7 +28,7 @@ int main()
 		}
 		if (checker == -1)
 		{
-			write(STDOUT_FILENO, error, 5);
+			write(STDOUT_FILENO, error, 7);
 			fflush(stdout);
 		}
 		if (checker > 0)	
@@ -53,12 +53,14 @@ int main()
 int execute(char *text)
 {
 	char *argv[2];
+	char *err = "./hsh\n";
 
 	argv[0] = text;
 	argv[1] = NULL;
 	if (execve(argv[0], argv, environ) == -1)
 	{
-		perror("./hsh");
+		write(STDOUT_FILENO, err, 7);
+		fflush(stdout);
 	}
 	return (0);
 }
