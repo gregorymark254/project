@@ -13,7 +13,6 @@
 #include <errno.h>
 #include <linux/limits.h>
 
-extern char **environ;
 
 
 #endif
