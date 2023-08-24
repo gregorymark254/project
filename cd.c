@@ -1,25 +1,39 @@
 #include "shell.h"
-/**
- * cd - changes directory
- * @text: path
- * Return: void
- */
-void cd(char *text)
-{
-	#define buffsize (sizeof(PATH_MAX))
-	char *buff[2];
-	char *delim = " ";
-	char *buffer;
 
-	buff[0] = strtok(text, delim);
-	buff[1] = strtok(NULL, delim);
-	chdir(buff[1]);
-	if (buff[1] == NULL)
+/**
+ * _chdir - change current directory
+ * @path: new path
+ * Return: 0 on sucess and 1 on failure
+ */
+
+int _chdir(char *path)
+{
+	int status, exitstat = 0;
+	char *currentdir = _getenv("PWD"), *buf = NULL, *cdir, *msg;
+	char *smn;
+	size_t size = 0;
+
+	if (!path || !_strcmp(path, "~"))
+		status = chdir(_getenv("HOME"));
+	else if (!_strcmp(path, "-"))
+		status = chdir(_getenv("OLDPWD"));
+	else
+		status = chdir(path);
+	if (status < 0)
 	{
-		chdir("$HOME");
+		errno = -3;
+		msg = _malloc(_strlen("No such file or directory ") + _strlen(path) + 4);
+		_strcpy(msg, "No such file or directory ");
+		smn = _malloc(_strlen("cd: ") + _strlen(path) + 4);
+		_strcpy(smn, "cd: "), _strcat(smn, path);
+		print_error(smn, NULL, msg);
+		free(msg), free(smn);
+		exitstat = 1;
 	}
-	buffer = malloc(buffsize + 1);
-	getcwd(buffer, buffsize);
-	setenv("PWD", buffer, 1);
-	free(buffer);
+
+	_setenv("OLDPWD", currentdir, 1);
+	cdir = getcwd(buf, size);
+	_setenv("PWD", cdir, 1);
+	free(buf), free(cdir);
+	return (exitstat);
 }

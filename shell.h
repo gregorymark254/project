@@ -1,103 +1,125 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
+#ifndef SIMPLE_SHELL
+#define SIMPLE_SHELL
 
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <string.h>
-#include <sys/wait.h>
 #include <stdlib.h>
-#include <signal.h>
+
+#include <sys/wait.h>
+#include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
+
+#include <unistd.h>
+#include <signal.h>
 #include <errno.h>
-#include <linux/limits.h>
-void getline_sh(char **text);
-void sett(char *text);
-void unsett(char *text);
-void cd(char *text);
+#include <fcntl.h>
+
+#define BUFFER_t 1024
+
+/**
+ * struct cmdnode - a node for one command in a command list
+ * @cmd: command string
+ * @op: operation between current command and next command
+ * @estat: exit status (shows if the command has been excuted or not)
+ * @next: a pointer to the next operand
+ */
+
+typedef struct cmdnode
+{
+	char *cmd;
+	char *op;
+	int estat;
+	struct cmdnode *next;
+} cmdnode;
+
+/**
+ * struct alias - a node for one alias
+ * @key: the alais
+ * @value: value of the alias
+ * @next: a pointer to the next alias
+ */
+
+typedef struct alias
+{
+	char *key;
+	char *value;
+	struct alias *next;
+} alias;
+
+
+void mv_cmd(cmdnode **, int);
+int exec_cmd(char **, int, alias **);
+
+
+char *get_file_path(char *);
+void parse_args(char *, const char *, char ***, int);
+int get_input(char **, size_t *, char ***, int);
+void trim_spaces(char **, char *);
+
+int *handle_bin(char **, alias **);
+
+void free_pp(char **);
+int _arlen(char **);
+void *_malloc(unsigned int);
+void *_realloc(void *, unsigned int);
+
+char **_arrdup(char **);
+void printdp(char **);
+
+int _getline(char **, size_t *, int);
+int _strcmpd(char *, const char *);
+char *_strtok(char *, const char *, int);
+int _strcmps(char *, const char *);
+
+int find_tok_occ(char *, char *);
+int find_n_rep(char **, char *, char *);
+
+int _strlen(const char *);
+char *_strcat(char *, char *);
+char *_strdup(char *);
+int _strcmp(char *, char *);
+char *_strcpy(char *, char *);
+
+int _putenv(char *);
+int _setenv(const char *, const char *, int);
+int _unsetenv(const char *);
+char *_getenv(const char *);
+void _printenv(void);
+
+int _chdir(char *);
+int runscript(char *);
+int execute(char **);
+
+int xpnd_str(char **, int);
+
+int add_alias(alias **, char *, char *);
+int print_lalias(alias *);
+int print_alias(alias *, char *);
+int handle_alias(char **, alias **);
+int freealias(alias *);
+
+void xpnd_alias(char **, alias *);
+
+int remove_alias(alias **, char *);
+
+int add_node(cmdnode **, char *, char *);
+cmdnode *build_list(char *);
+int print_nodes(cmdnode *);
+void free_list(cmdnode *);
+cmdnode *add_node_index(cmdnode **, char *, char *, int);
+
+int pow_b(unsigned int base, int power);
+int num_len(unsigned int num);
+char *itoa(int);
+int _atoi(char *);
+
+void print_help(char *arg);
+
+int print_history(void);
+int write_history(char *);
+
+int _write(int, char *, int);
+
+void print_error(char *, int *, char *);
 
 extern char **environ;
-
-#define _GNU_SOURCE
-
-/*macros*/
-#define PATH_MAX_LENGTH 4096
-#define PATH_SEPARATOR ":"
-#define PROMPT "$ "
-#define MAX_TOKENS 1024
-#define BUFFER_SIZE 1024
-
-/* prompt.c */
-void prompt(void);
-
-/* get_input.c */
-char *get_input(void);
-void free_last_input(void);
-/* get_line.c*/
-void *get_line(void);
-
-/* built-in funcs */
-int check_for_builtin(char **args);
-int execute_buitlin(char *cmd, char **args);
-void shell_help(void);
-void shell_exit(char **args);
-void shell_cd(char **args);
-int shell_setenv(char **args);
-int shell_unsetenv(char **args);
-int shell_env(void);
-int shell_clear(char **args);
-
-/* signal_handler.c */
-void handle_sigint(int sig);
-void handle_sigquit(int sig);
-void handle_sigstp(int sig);
-
-/* execute.c */
-int execute(char **args);
-
-/* parser.c */
-char **tokenize(char *str, const char *delim);
-char **tokenize_input(char *input);
-
-/* get_env.c */
-char *_getenv(const char *name);
-
-/* get_path.c */
-char *get_path(void);
-
-/* find_in_path.c */
-char *find_in_path(char *command);
-
-/* free.c */
-void free_error(char **argv, char *arg);
-void free_tokens(char **ptr);
-void free_path(void);
-
-/* error.c */
-void _puts(char *str);
-void _puterror(char *err);
-
-/* utils_funcs1.c */
-int _strlen(const char *);
-int _strcmp(const char *s1, const char *s2);
-int _strncmp(const char *s1, const char *s2, size_t n);
-char *_strstr(char *haystack, char *needle);
-char *_strchr(char *s, char c);
-
-/* utils_funcs2.c */
-char *_strcpy(char *, char *);
-char *_strcat(char *, const char *);
-char *_strdup(const char *);
-int _putchar(char);
-unsigned int _strspn(char *s, char *accept);
-
-/* utils_funcs3.c */
-int _atoi(const char *str);
-char *_memset(char *, char, unsigned int);
-char *_memcpy(char *dest, char *src, unsigned int n);
-void *_realloc(void *, unsigned int, unsigned int);
-void *_calloc(unsigned int nmemb, unsigned int size);
-
 
 #endif
