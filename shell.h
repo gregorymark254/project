@@ -1,6 +1,5 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
-<<<<<<< HEAD
 
 #include <stdio.h>
 #include <unistd.h>
@@ -17,21 +16,8 @@ void getline_sh(char **text);
 void sett(char *text);
 void unsett(char *text);
 void cd(char *text);
-=======
-#define _GNU_SOURCE
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <limits.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <stdarg.h>
-#include <ctype.h>
+#define _GNU_SOURCE
 
 /*macros*/
 #define PATH_MAX_LENGTH 4096
@@ -110,6 +96,6 @@ char *_memset(char *, char, unsigned int);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *, unsigned int, unsigned int);
 void *_calloc(unsigned int nmemb, unsigned int size);
->>>>>>> e911b3bd0269d6e90fa729599e66b8005e848abb
+
 
 #endif
