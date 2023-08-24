@@ -1,1 +1,1 @@
-Simple shell project in c
+simple shell project
