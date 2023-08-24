@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <ctype.h>
 
 static char *last_input;
 /**

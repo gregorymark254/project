@@ -17,6 +17,8 @@ void sett(char *text);
 void unsett(char *text);
 void cd(char *text);
 
+extern char **environ;
+
 #define _GNU_SOURCE
 
 /*macros*/
