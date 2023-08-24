@@ -13,6 +13,11 @@
 #include <errno.h>
 #include <linux/limits.h>
 
+<<<<<<< HEAD
 int begin(int argc, char **argv, char **env);
+=======
+
+
+>>>>>>> a9dfc58624297fa456f7049fe9bc16e8ad366d19
 
 #endif
