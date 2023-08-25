@@ -46,4 +46,3 @@ int begin(int argc, char **argv, char **env)
 		release_array(value);
 	return (0);
 }
-
