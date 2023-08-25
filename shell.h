@@ -13,7 +13,6 @@
 #include <errno.h>
 #include <linux/limits.h>
 
-int main(int argc, char **argv, char **env);
 int begin(int argc, char **argv, char **env);
 char *prompt_input(char **argv);
 int _nmbr_value(char *input);
@@ -31,5 +30,7 @@ int _compare(char *str1, char *str2, size_t sz);
 char *_concat(char *end, const char *str);
 void _display(int position, char **argv, char *msg);
 void _display_error(int position, char **argv, char *cmd);
+char *_strcat(char *dest, char *src)
+char *trim(char *cmd)
 
 #endif
