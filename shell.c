@@ -11,10 +11,8 @@
 int main(int argc, char **argv, char **env)
 
 {
-	int i;
+	int start_code = begin(argc, argv, env);
 
-	i = begin(argc, argv, env);
-
-	return (i);
+	return (start_code);
 }
 
