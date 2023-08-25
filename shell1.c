@@ -20,11 +20,11 @@ int begin(int argc, char **argv, char **env)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-		write(1, title, 5);
+			write(1, title, 5);
 
 		insert = prompt_input(argv);
 		if (insert == NULL)
-		continue;
+			continue;
 
 		value = store_data(insert, argv);
 		if (value == NULL)
@@ -33,15 +33,17 @@ int begin(int argc, char **argv, char **env)
 			continue;
 		}
 		free(insert);
+
 		run_cmd(value, argv, env);
+
 		release_array(value);
 	}
 
 	if (insert != NULL)
-	free(insert);
+		free(insert);
 
 	if (value != NULL)
-	release_array(value);
+		release_array(value);
 	return (0);
 }
 
