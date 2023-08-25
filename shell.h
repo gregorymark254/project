@@ -30,7 +30,5 @@ int _compare(char *str1, char *str2, size_t sz);
 char *_concat(char *end, const char *str);
 void _display(int position, char **argv, char *msg);
 void _display_error(int position, char **argv, char *cmd);
-char *_strcat(char *dest, char *src)
-char *trim(char *cmd)
 
 #endif
