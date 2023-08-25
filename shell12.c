@@ -14,13 +14,13 @@ int _compare(char *str1, char *str2, size_t sz)
 
 	for (c = 0 ; str1[c] && str2[c] && c < sz ; c++)
 	{
-		while (str1[c] != str2[c])
+		if (str1[c] != str2[c])
 		{
 			return (-1);
 		}
 	}
 
-	while (c == sz)
+	if (c == sz)
 		return (0);
 
 	return (-1);

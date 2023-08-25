@@ -14,7 +14,7 @@ int _copy(char *end, char *str)
 	if (str == NULL || end == NULL)
 		return (0);
 
-	if (str[c])
+	while (str[c])
 	{
 		end[c] = str[c];
 		c++;

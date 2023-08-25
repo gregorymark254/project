@@ -1,6 +1,29 @@
 #include "shell.h"
 
 /**
+ * _nmbr_value - the number of values
+ * @input: getting data input
+ * Return: null or void
+*/
+
+int _nmbr_value(char *input)
+
+{
+	char *delim = " \n";
+	char *value;
+	int c = 0;
+
+	value = strtok(input, delim);
+	if (value != NULL)
+	{
+		c++;
+		value = strtok(NULL, delim);
+	}
+
+	return (c);
+}
+
+/**
  * store_data - data to be stored
  * @input: input data
  * @argv: argument to value
@@ -50,28 +73,5 @@ char **store_data(char *input, char **argv)
 	}
 	values[c] = NULL;
 	return (values);
-}
-
-/**
- * _nmbr_value - the number of values
- * @input: getting data input
- * Return: null or void
-*/
-
-int _nmbr_value(char *input)
-
-{
-	char *delim = " \n";
-	char *value;
-	int c = 0;
-
-	value = strtok(input, delim);
-	if (value != NULL)
-	{
-		c++;
-		value = strtok(NULL, delim);
-	}
-
-	return (c);
 }
 

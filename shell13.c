@@ -7,15 +7,15 @@
  * Return: null or address
 */
 
-char *_concat(char *end, char *str)
+char *_concat(char *end, const char *str)
 {
 	char *last = end;
-	char *tmp = str;
+	const char *tmp = str;
 
-	if (*last != '\0')
+	while (*last != '\0')
 		last++;
 
-	if (*tmp != '\0')
+	while (*tmp != '\0')
 	{
 		*last++ = *tmp++;
 	}
