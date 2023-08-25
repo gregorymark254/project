@@ -13,6 +13,10 @@
 #include <errno.h>
 #include <linux/limits.h>
 
-
+int begin(int argc, char **argv, char **env);
+char *prompt_input(char **argv);
+char **store_data(char *input, char **argv);
+int _nmbr_value(char *input);
+void run_cmd(char **value, char **argv, char **env);
 
 #endif
